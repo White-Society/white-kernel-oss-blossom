@@ -1138,7 +1138,7 @@ static void cm_mgr_cpu_frequency_tracer(void *ignore, unsigned int frequency,
 	}
 
 	if (policy) {
-		idx = cpufreq_frequency_table_target(policy, frequency,
+		idx = cpufreq_table_index_unsorted(policy, frequency,
 				CPUFREQ_RELATION_L);
 		if (hk.check_cm_mgr_status)
 			hk.check_cm_mgr_status(cluster, frequency, idx);

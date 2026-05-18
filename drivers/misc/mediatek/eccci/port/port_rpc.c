@@ -25,7 +25,7 @@
 #include <linux/of_gpio.h>
 #include <linux/of_address.h>
 #include "ccci_config.h"
-#include "ccci_common_config.h"
+#include "../ccci_common_config.h"
 #include <linux/arm-smccc.h>
 #include <linux/soc/mediatek/mtk_sip_svc.h>
 

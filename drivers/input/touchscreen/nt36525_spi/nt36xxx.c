@@ -106,7 +106,11 @@ uint32_t SPI_RD_FAST_ADDR = 0;	//read from dtsi
 
 extern bool nvt_ts_esd_resume_probe;
 extern int (*lcd_nvt_ts_esd_resume)(void);
+#if NVT_TOUCH_ESD_PROTECT
 static int tp_nvt_ts_esd_resume(void);
+#else
+static int tp_nvt_ts_esd_resume(void) { return 0; }
+#endif
 
 #if TOUCH_KEY_NUM > 0
 const uint16_t touch_key_array[TOUCH_KEY_NUM] = {
@@ -2487,7 +2491,9 @@ tp_sensor_probe_switch = false;
 	bTouchIsAwake = 1;
         tp_sensor_probe_switch = true;
 	nvt_ts_esd_resume_probe = true;
+#if NVT_TOUCH_ESD_PROTECT
 	lcd_nvt_ts_esd_resume = tp_nvt_ts_esd_resume;
+#endif
 	NVT_LOG("end\n");
 
 	nvt_irq_enable(true);
@@ -2521,6 +2527,7 @@ tp_sensor_probe_switch = false;
     mtk_disp_notifier_unregister(&ts->disp_notifier);
 #endif
 
+if (0) goto err_register_suspend_resume_failed;
 err_register_suspend_resume_failed:
     	if (ts->resume_wq)
 		destroy_workqueue(ts->resume_wq);
@@ -2808,7 +2815,7 @@ Description:
 return:
 	Executive outcomes. 0---succeed.
 *******************************************************/
-static int32_t nvt_ts_suspend(struct device *dev)
+static __maybe_unused int32_t nvt_ts_suspend(struct device *dev)
 {
 	uint8_t buf[4] = {0};
 #if MT_PROTOCOL_B
@@ -3053,17 +3060,14 @@ static int nvt_fb_notifier_callback(struct notifier_block *self, unsigned long e
         
 	flush_workqueue(ts->resume_wq);
 		
-	if (evdata && evdata->data && event == FB_EARLY_EVENT_BLANK) {
+	if (evdata && evdata->data) {
 		blank = evdata->data;
 		if (*blank == FB_BLANK_POWERDOWN) {
 			NVT_LOG("event=%lu, *blank=%d\n", event, *blank);
 			nvt_ts_suspend(&ts->client->dev);
-		}
-	} else if (evdata && evdata->data && event == FB_EVENT_BLANK) {
-		blank = evdata->data;
-		if (*blank == FB_BLANK_UNBLANK) {
+		} else if (*blank == FB_BLANK_UNBLANK) {
 			NVT_LOG("event=%lu, *blank=%d\n", event, *blank);
-			queue_work(ts->resume_wq, &ts->resume_work);		
+			queue_work(ts->resume_wq, &ts->resume_work);
 		}
 	}
 
@@ -3141,6 +3145,7 @@ static void nvt_panel_notifier_callback(enum panel_event_notifier_tag tag,
 	}
 }
 #elif IS_ENABLED(NVT_MTK_DRM_NOTIFY)
+#define TP_NVT_TS_ESD_RESUME_DEFINED
 static int tp_nvt_ts_esd_resume(void)
 {
 	bTouchIsAwake = 0;
@@ -3323,3 +3328,10 @@ MODULE_LICENSE("GPL");
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 4, 0)
 MODULE_IMPORT_NS(VFS_internal_I_am_really_a_filesystem_and_am_NOT_a_driver);
 #endif
+
+#if NVT_TOUCH_ESD_PROTECT
+#ifndef TP_NVT_TS_ESD_RESUME_DEFINED
+static int tp_nvt_ts_esd_resume(void) { return 0; }
+#endif
+#endif
+

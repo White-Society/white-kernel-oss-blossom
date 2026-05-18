@@ -34,7 +34,7 @@
 #include <linux/clk.h>
 
 #include "ccci_config.h"
-#include "ccci_common_config.h"
+#include "../ccci_common_config.h"
 #include "ccci_core.h"
 #ifndef CCCI_KMODULE_ENABLE
 #include "modem_sys.h"

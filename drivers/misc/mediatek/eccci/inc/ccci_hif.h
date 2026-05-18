@@ -9,8 +9,8 @@
 #include <linux/skbuff.h>
 #include "ccci_modem.h"
 #include "ccci_core.h"
-#include "ccci_config.h"
-#include "ccif_hif_reg.h"
+#include "../platform/ccci_config.h"
+#include "../hif/ccif_hif_reg.h"
 
 enum CCCI_HIF {
 	CLDMA_HIF_ID,

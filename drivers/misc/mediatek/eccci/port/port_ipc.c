@@ -19,7 +19,7 @@
 #endif
 #include "mt-plat/mtk_ccci_common.h"
 #include "ccci_config.h"
-#include "ccci_common_config.h"
+#include "../ccci_common_config.h"
 #include "ccci_core.h"
 #include "ccci_bm.h"
 #include "port_ipc.h"

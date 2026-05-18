@@ -10,6 +10,7 @@
 
 #include "user.h"
 
+#ifdef CONFIG_CPU_FREQ
 static void teeperf_set_cpu_to_high_freq(int target_cpu, u32 high_freq,
 	unsigned int freq_level_index)
 {
@@ -44,6 +45,10 @@ static void teeperf_set_cpu_to_high_freq(int target_cpu, u32 high_freq,
 	cpufreq_cpu_put(policy);
 	cpufreq_update_limits(target_cpu);
 }
+#else
+static void teeperf_set_cpu_to_high_freq(int target_cpu, u32 high_freq,
+	unsigned int freq_level_index) { }
+#endif
 
 static void teeperf_set_cpu_group_to_high_freq(enum teeperf_cpu_group group,
 	u32 high_freq)

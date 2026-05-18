@@ -282,12 +282,13 @@ static int mm8013_get_property(struct power_supply *psy,
 
 				mm8013_current(&tmp_val.intval);
 				current_now = tmp_val.intval;
-				if (current_now != 0)
+				if (current_now != 0) {
 					time_to_full = remain_mah * 3600 / current_now;
 					pr_info("time_to_full:%d, remain:ui:%d mah:%d, current_now:%d, qmax:%d\n",
 						time_to_full, remain_ui, remain_mah,
 						current_now, q_max_now);
 					val->intval = abs(time_to_full);
+			}
 				}
 			break;
 		case POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN:

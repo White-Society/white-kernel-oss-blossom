@@ -11,7 +11,7 @@
 #include <linux/clk.h> /* for clk_prepare/un* */
 
 #include "ccci_config.h"
-#include "ccci_common_config.h"
+#include "../ccci_common_config.h"
 #include "ccci_fsm_internal.h"
 #include "md_sys1_platform.h"
 #include "modem_secure_base.h"

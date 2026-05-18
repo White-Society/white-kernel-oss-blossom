@@ -380,7 +380,7 @@ void fts_irq_enable(void)
     struct irq_desc *desc = irq_to_desc(fts_data->irq);
 
     FTS_FUNC_ENTER();
-    FTS_DEBUG("irq_depth:%d\n, irq_status:%d\n", desc->depth);		
+    FTS_DEBUG("irq_depth:%d\n", desc->depth);		
     spin_lock_irqsave(&fts_data->irq_lock, irqflags);
 
     if ((desc->depth == 1) || (fts_data->irq_disabled)) {
@@ -2094,7 +2094,7 @@ static int fb_notifier_callback(struct notifier_block *self, unsigned long event
         const int blank_enum[2] = {MTK_DISP_BLANK_POWERDOWN, MTK_DISP_BLANK_UNBLANK};
         int blank_value = *((int *)v);
 #elif IS_ENABLED(CONFIG_FB)
-        const unsigned long event_enum[2] = {FB_EARLY_EVENT_BLANK, FB_EVENT_BLANK};
+        const unsigned long event_enum[2] = {FB_EVENT_BLANK, FB_EVENT_BLANK};
         const int blank_enum[2] = {FB_BLANK_POWERDOWN, FB_BLANK_UNBLANK};
         int blank_value = *((int *)(((struct fb_event *)v)->data));
 #endif

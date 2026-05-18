@@ -3,7 +3,7 @@
 /*
  * Copyright (c) 2021 MediaTek Inc.
  */
-
+#include <linux/i2c.h>
 #include <linux/types.h>
 #include <linux/init.h>		/* For init/exit macros */
 #include <linux/module.h>	/* For MODULE_ marcros  */
@@ -1805,7 +1805,7 @@ static int sgm4154x_charger_remove(struct i2c_client *client)
     return 0;
 }
 
-static int get_ship_mode()
+static int get_ship_mode(void)
 {
     struct power_supply *psy = NULL;
 	struct mtk_battery *gm = NULL;

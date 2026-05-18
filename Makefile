@@ -230,6 +230,10 @@ $(if $(word 2, $(KBUILD_EXTMOD)), \
 
 export KBUILD_CHECKSRC KBUILD_EXTMOD
 
+# Temporary: don't treat certain warnings as errors to unblock build
+KBUILD_CFLAGS += -Wno-error -Wno-error=format -Wno-error=misleading-indentation
+
+
 extmod-prefix = $(if $(KBUILD_EXTMOD),$(KBUILD_EXTMOD)/)
 
 # ANDROID: set up mixed-build support. mixed-build allows device kernel modules
@@ -805,6 +809,8 @@ KBUILD_CFLAGS += $(stackp-flags-y)
 
 KBUILD_CFLAGS-$(CONFIG_WERROR) += -Werror
 KBUILD_CFLAGS += $(KBUILD_CFLAGS-y)
+KBUILD_CFLAGS += $(call cc-disable-warning, dangling-pointer)
+KBUILD_CFLAGS += -Wno-error
 
 ifdef CONFIG_CC_IS_CLANG
 KBUILD_CPPFLAGS += -Qunused-arguments

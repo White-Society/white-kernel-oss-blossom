@@ -33,6 +33,10 @@
 #include "mtk_battery_table.h"
 #include "tcpm.h"
 
+int battery_type_flag = 0;
+int battery_id_flag = 0;
+int typec_mode_flag = 0;
+
 static const char * const mtk_usbc_text[] = {
 	[PSY_TYPEC_NONE]		= "Nothing attached",
 	[PSY_TYPEC_SINK]		= "Sink attached",

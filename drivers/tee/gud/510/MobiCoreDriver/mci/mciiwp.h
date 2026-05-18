@@ -16,7 +16,7 @@
 #ifndef MCIIWP_H
 #define MCIIWP_H
 
-#include "public/GP/tee_client_types.h" /* teec_uuid FIXME it's all mixed up! */
+#include "../public/GP/tee_client_types.h" /* teec_uuid FIXME it's all mixed up! */
 
 /** Session ID for notifications for the Dragon CA-to-TA communication protocol
  *

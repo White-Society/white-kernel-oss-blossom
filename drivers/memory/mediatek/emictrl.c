@@ -21,9 +21,9 @@
 //========= Structure ==================
 
 #if (CONFIG_MTK_EMI_BWL_VERSION == 1)
-#include<emibwl/1.0/emibwl.h>
+#include "./emibwl/1.0/emibwl.h"
 #else
-#include<emibwl/default/emibwl.h>
+#include "./emibwl/default/emibwl.h"
 #endif
 
 /**
@@ -61,7 +61,7 @@ static struct scn_reg_t cen_reg[BWL_ENV_MAX][BWL_SCN_MAX][BWL_CEN_MAX] = {
 	[ENV][SCN][BWL_CEN_##OFFSET].value = VAL,
 #define SET_BWL_CHN_REG(ENV, SCN, OFFSET, VAL)
 #if (CONFIG_MTK_EMI_BWL_VERSION == 1)
-#include<emibwl/1.0/bwl_scenario.h>
+#include "./emibwl/1.0/bwl_scenario.h"
 #endif
 #undef SET_BWL_CEN_REG
 #undef SET_BWL_CHN_REG
@@ -73,7 +73,7 @@ static struct scn_reg_t chn_reg[BWL_ENV_MAX][BWL_SCN_MAX][BWL_CHN_MAX] = {
 	[ENV][SCN][BWL_CHN_##OFFSET].offset = OFFSET, \
 	[ENV][SCN][BWL_CHN_##OFFSET].value = VAL,
 #if (CONFIG_MTK_EMI_BWL_VERSION == 1)
-#include<emibwl/1.0/bwl_scenario.h>
+#include "./emibwl/1.0/bwl_scenario.h"
 #endif
 #undef SET_BWL_CEN_REG
 #undef SET_BWL_CHN_REG
@@ -87,7 +87,7 @@ static struct scn_name_t scn_name[BWL_SCN_MAX] = {
 	[SCN].name = #SCN,
 #define SET_BWL_CHN_REG(ENV, SCN, OFFSET, VAL)
 #if (CONFIG_MTK_EMI_BWL_VERSION == 1)
-#include<emibwl/1.0/bwl_scenario.h>
+#include "./emibwl/1.0/bwl_scenario.h"
 #endif
 #undef SET_BWL_CEN_REG
 #undef SET_BWL_CHN_REG
@@ -382,10 +382,10 @@ static int emictrl_probe(struct platform_device *pdev)
 		"emi_cen_cnt", emi_cen->emi_cen_cnt,
 		"emi_chn_cnt", emi_cen->emi_chn_cnt);
 	for (i = 0; i < emi_cen->emi_cen_cnt; i++)
-		pr_info("%s: emi_cen_base[%d] = 0x%x\n", __func__,
+		pr_info("%s: emi_cen_base[%d] = %p\n", __func__,
 			i, emi_cen->emi_cen_base[i]);
 	for (i = 0; i < emi_cen->emi_chn_cnt; i++)
-		pr_info("%s: emi_chn_base[%d] = 0x%x\n", __func__,
+		pr_info("%s: emi_chn_base[%d] = %p\n", __func__,
 			i, emi_cen->emi_chn_base[i]);
 
 	bwl_init(&emictrl_drv);

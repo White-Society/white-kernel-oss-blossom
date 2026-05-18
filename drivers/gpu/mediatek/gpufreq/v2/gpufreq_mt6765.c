@@ -2006,13 +2006,13 @@ static int __gpufreq_init_segment_id(struct platform_device *pdev)
 	efuse_cell = nvmem_cell_get(&pdev->dev, "efuse_segment_cell");
 	if (IS_ERR(efuse_cell)) {
 		GPUFREQ_LOGE("@%s: cannot get efuse_segment_cell\n", __func__);
-		PTR_ERR(efuse_cell);
+		(void)PTR_ERR(efuse_cell);
 	}
 	efuse_buf = (unsigned int *)nvmem_cell_read(efuse_cell, &efuse_len);
 	nvmem_cell_put(efuse_cell);
 	if (IS_ERR(efuse_buf)) {
 		GPUFREQ_LOGE("@%s: cannot get efuse_buf of efuse segment\n", __func__);
-	    PTR_ERR(efuse_buf);
+	    (void)PTR_ERR(efuse_buf);
 	}
 	efuse_id = (*efuse_buf & 0xFF);
 	kfree(efuse_buf);

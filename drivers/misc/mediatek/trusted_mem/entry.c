@@ -314,22 +314,22 @@ int tmem_core_alloc_page(enum TRUSTED_MEM_TYPE mem_type, u32 size,
 	}
 	end = sched_clock();
 	if (end - start > 10000000ULL) {/* unit is ns */
-		pr_info("%s alloc_non_contig len: 0x%lx time: %lld ns\n",
-			__func__, size, end - start);
+		pr_info("%s alloc_non_contig len: 0x%x time: %llu ns\n",
+			__func__, size, (unsigned long long)(end - start));
 	}
 
 #if HYP_PMM_MASTER_SIDE_PROTECT
 	start = sched_clock();
 	smc_ret = mtee_assign_buffer(info, mem_type);
 	if (smc_ret) {
-		pr_err("smc_ret:%x assign buffer failed!\n", smc_ret);
+		pr_err("smc_ret:%lx assign buffer failed!\n", smc_ret);
 		ssheap_free_non_contig(info);
 		return TMEM_GENERAL_ERROR;
 	}
 	end = sched_clock();
 	if (end - start > 10000000ULL) {/* unit is ns */
-		pr_info("%s mtee assign buffer len: 0x%lx time: %lld ns\n",
-			__func__, size, end - start);
+		pr_info("%s mtee assign buffer len: 0x%x time: %llu ns\n",
+			__func__, size, (unsigned long long)(end - start));
 	}
 #endif
 
@@ -561,7 +561,7 @@ bool tmem_core_get_region_info(enum TRUSTED_MEM_TYPE mem_type, u64 *pa,
 	*pa = mem_device->peer_mgr->peer_mgr_data.mem_pa_start;
 	*size = mem_device->peer_mgr->peer_mgr_data.mem_size;
 
-	pr_debug("[%d] region pa: 0x%llx, sz: 0x%x\n", mem_type, *pa, *size);
+	pr_debug("[%d] region pa: 0x%llx, sz: 0x%x\n", mem_type, (unsigned long long)*pa, *size);
 	return true;
 }
 
@@ -623,7 +623,7 @@ int tmem_query_gz_handle_to_pa(enum TRUSTED_MEM_TYPE mem_type, u32 alignment,
 	}
 
 	*phy_addr = (uint64_t)p[1].value.a << SECMEM_64BIT_PHYS_SHIFT;
-	pr_info("[%s] handle=0x%x, ok(pa=0x%lx)\n", __func__, *gz_handle, *phy_addr);
+	pr_info("[%s] handle=0x%x, ok(pa=0x%llx)\n", __func__, *gz_handle, (unsigned long long)*phy_addr);
 
 	KREE_CloseSession(session);
 

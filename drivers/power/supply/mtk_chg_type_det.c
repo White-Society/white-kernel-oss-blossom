@@ -15,7 +15,7 @@
 #include <linux/mutex.h>
 #include <linux/delay.h>
 #include <tcpm.h>
-#include <mtk_battery.h>
+#include "mtk_battery.h"
 
 #define MTK_CTD_DRV_VERSION	"1.0.0_MTK"
 

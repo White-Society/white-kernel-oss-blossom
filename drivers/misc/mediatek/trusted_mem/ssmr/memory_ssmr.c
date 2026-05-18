@@ -68,7 +68,7 @@ static void set_svp_reserve_memory(void)
 
 	base = rmem->base;
 	size = rmem->size;
-	pr_info("%s, svp reserved pa base=0x%lx, size=0x%lx\n", __func__, base, size);
+	pr_info("%s, svp reserved pa base=0x%llx, size=0x%llx\n", __func__, (unsigned long long)base, (unsigned long long)size);
 
 	feature->use_cache_memory = true;
 	feature->count = size / PAGE_SIZE;
@@ -273,8 +273,8 @@ static int memory_region_offline(struct SSMR_Feature *feature, phys_addr_t *pa,
 
 	feature->alloc_size = alloc_size;
 
-	pr_debug("%s %d: upper_limit: %llx, feature{ alloc_size : 0x%lx",
-		__func__, __LINE__, upper_limit, alloc_size);
+	pr_debug("%s %d: upper_limit: 0x%llx, feature{ alloc_size : 0x%zx }\n",
+		__func__, __LINE__, (unsigned long long)upper_limit, alloc_size);
 
 	/*
 	 * setup init device with rmem
@@ -317,8 +317,8 @@ static int memory_region_offline(struct SSMR_Feature *feature, phys_addr_t *pa,
 		if (feature->must_2MB_alignment && (feature->phy_addr % GRANULARITY_SIZE)) {
 			/* pa add 1MB, then pa is 2MB alignment */
 			*pa = *pa + GRANULARITY_SIZE/2;
-			pr_info("%s: feature: %s, adjust 2MB alignment: pa=0x%lx, retry = %d\n",
-				__func__, feature->feat_name, *pa, offline_retry);
+			pr_info("%s: feature: %s, adjust 2MB alignment: pa=%pa, retry = %d\n",
+				__func__, feature->feat_name, pa, offline_retry);
 		}
 	}
 
