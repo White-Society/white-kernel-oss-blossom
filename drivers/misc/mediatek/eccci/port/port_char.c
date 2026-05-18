@@ -14,7 +14,7 @@
 #include <linux/compat.h>
 #endif
 #include "ccci_config.h"
-#include "ccci_common_config.h"
+#include "../ccci_common_config.h"
 #include "ccci_bm.h"
 #include "port_proxy.h"
 #include "port_char.h"

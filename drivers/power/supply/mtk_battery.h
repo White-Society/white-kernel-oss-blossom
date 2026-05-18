@@ -1203,13 +1203,13 @@ extern int mtbf_current;
 /* add for gmsoc*/
 extern int gmsoc;
 /*add for battery_type*/
-static int battery_type_flag = 0;
+extern int battery_type_flag;
 
 /*add for battery_id*/
-static int battery_id_flag = 0;
+extern int battery_id_flag;
 
 /* add for typec_mode*/
 extern int typec_mode;
-static int typec_mode_flag = 0;
+extern int typec_mode_flag;
 
 #endif /* __MTK_BATTERY_INTF_H__ */

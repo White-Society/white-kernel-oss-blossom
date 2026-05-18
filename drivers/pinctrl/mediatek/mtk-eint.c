@@ -98,8 +98,8 @@ static unsigned int mtk_eint_get_##_NAME(struct mtk_eint *eint, \
 	unsigned int bit = BIT(index & 0x1f);\
 \
 	if (!reg) { \
-		dev_err(eint->dev, "%s invalid eint_num %d\n", \
-			__func__, eint_num); \
+		dev_err(eint->dev, "%s invalid eint_num %lu\n", \
+			__func__, (unsigned long)eint_num); \
 		return 0;\
 	} \
 \
@@ -124,8 +124,8 @@ static unsigned int mtk_eint_can_en_debounce(struct mtk_eint *eint,
 	unsigned int bit = BIT(index & 0x1f);
 
 	if (!reg) {
-		dev_err(eint->dev, "%s invalid eint_num %d\n",
-			__func__, eint_num);
+		dev_err(eint->dev, "%s invalid eint_num %lu\n",
+			__func__, (unsigned long)eint_num);
 		return 0;
 	}
 
@@ -152,8 +152,8 @@ static int mtk_eint_flip_edge(struct mtk_eint *eint, int eint_num)
 				  &instance, &index);
 
 	if (!reg) {
-		dev_err(eint->dev, "%s invalid eint_num %d\n",
-			__func__, eint_num);
+		dev_err(eint->dev, "%s invalid eint_num %lu\n",
+			__func__, (unsigned long)eint_num);
 		return 0;
 	}
 
@@ -161,7 +161,7 @@ static int mtk_eint_flip_edge(struct mtk_eint *eint, int eint_num)
 	port = index >> 5;
 	reg = eint->instances[instance].base + port * 4;
 
-	curr_level = eint->gpio_xlate->get_gpio_state(eint->pctl, eint_num);
+	curr_level = eint->gpio_xlate->get_gpio_state(eint->pctl, (unsigned long)eint_num);
 
 	do {
 		start_level = curr_level;
@@ -189,8 +189,8 @@ static void mtk_eint_mask(struct irq_data *d)
 	u32 mask = BIT(index & 0x1f);
 
 	if (!reg) {
-		dev_err(eint->dev, "%s invalid eint_num %d\n",
-			__func__, d->hwirq);
+		dev_err(eint->dev, "%s invalid eint_num %lu\n",
+			__func__, (unsigned long)d->hwirq);
 		return;
 	}
 
@@ -209,8 +209,8 @@ static void mtk_eint_unmask(struct irq_data *d)
 	u32 mask = BIT(index & 0x1f);
 
 	if (!reg) {
-		dev_err(eint->dev, "%s invalid eint_num %d\n",
-			__func__, d->hwirq);
+		dev_err(eint->dev, "%s invalid eint_num %lu\n",
+			__func__, (unsigned long)d->hwirq);
 		return;
 	}
 
@@ -219,7 +219,7 @@ static void mtk_eint_unmask(struct irq_data *d)
 	writel(mask, reg);
 
 	if (eint->pins[d->hwirq].dual_edge)
-		mtk_eint_flip_edge(eint, d->hwirq);
+		mtk_eint_flip_edge(eint, (unsigned long)d->hwirq);
 }
 
 /*
@@ -237,8 +237,8 @@ void mt6983_eint_ack(struct irq_data *d)
 	unsigned int bit = BIT(index & 0x1f);
 
 	if (!ack_reg) {
-		dev_err(eint->dev, "%s invalid eint_num %d\n",
-			__func__, d->hwirq);
+		dev_err(eint->dev, "%s invalid eint_num %lu\n",
+			__func__, (unsigned long)d->hwirq);
 		return;
 	}
 
@@ -270,8 +270,8 @@ static void mtk_eint_ack(struct irq_data *d)
 					  &instance, &index);
 		bit = BIT(index & 0x1f);
 		if (!reg) {
-			dev_err(eint->dev, "%s invalid eint_num %d\n",
-				__func__, d->hwirq);
+			dev_err(eint->dev, "%s invalid eint_num %lu\n",
+				__func__, (unsigned long)d->hwirq);
 			return;
 		}
 
@@ -289,8 +289,8 @@ static void mtk_eint_soft_set(struct mtk_eint *eint,
 	unsigned int bit = BIT(index & 0x1f);
 
 	if (!reg) {
-		dev_err(eint->dev, "%s invalid eint_num %d\n",
-			__func__, eint_num);
+		dev_err(eint->dev, "%s invalid eint_num %lu\n",
+			__func__, (unsigned long)eint_num);
 		return;
 	}
 
@@ -307,8 +307,8 @@ static void mtk_eint_soft_clr(struct mtk_eint *eint,
 	unsigned int bit = BIT(index & 0x1f);
 
 	if (!reg) {
-		dev_err(eint->dev, "%s invalid eint_num %d\n",
-			__func__, eint_num);
+		dev_err(eint->dev, "%s invalid eint_num %lu\n",
+			__func__, (unsigned long)eint_num);
 		return;
 	}
 
@@ -357,8 +357,8 @@ static int mtk_eint_set_type(struct irq_data *d, unsigned int type)
 					  &instance, &index);
 
 	if (!reg) {
-		dev_err(eint->dev, "%s invalid eint_num %d\n",
-			__func__, d->hwirq);
+		dev_err(eint->dev, "%s invalid eint_num %lu\n",
+			__func__, (unsigned long)d->hwirq);
 		return 0;
 	}
 
@@ -366,7 +366,7 @@ static int mtk_eint_set_type(struct irq_data *d, unsigned int type)
 	writel(mask, reg);
 
 	if (eint->pins[d->hwirq].dual_edge)
-		mtk_eint_flip_edge(eint, d->hwirq);
+		mtk_eint_flip_edge(eint, (unsigned long)d->hwirq);
 
 	return 0;
 }
@@ -380,8 +380,8 @@ static int mtk_eint_irq_set_wake(struct irq_data *d, unsigned int on)
 						&instance, &index);
 
 	if (!reg) {
-		dev_err(eint->dev, "%s invalid eint_num %d\n",
-			__func__, d->hwirq);
+		dev_err(eint->dev, "%s invalid eint_num %lu\n",
+			__func__, (unsigned long)d->hwirq);
 		return 0;
 	}
 
@@ -417,7 +417,7 @@ static int mtk_eint_irq_request_resources(struct irq_data *d)
 		goto err_out;
 	}
 
-	err = eint->gpio_xlate->set_gpio_as_eint(eint->pctl, d->hwirq);
+	err = eint->gpio_xlate->set_gpio_as_eint(eint->pctl, (unsigned long)d->hwirq);
 	if (err < 0) {
 		dev_err(eint->dev, "Can not eint mode\n");
 		goto err_out;
@@ -486,8 +486,8 @@ mtk_eint_debounce_process(struct mtk_eint *eint, int eint_num)
 				  &instance, &index);
 
 	if (!reg) {
-		dev_err(eint->dev, "%s invalid eint_num %d\n",
-			__func__, eint_num);
+		dev_err(eint->dev, "%s invalid eint_num %lu\n",
+			__func__, (unsigned long)eint_num);
 		return;
 	}
 
@@ -527,7 +527,7 @@ static void mtk_eint_irq_handler(struct irq_desc *desc)
 				status &= ~BIT(shift);
 
 				eint_num = eint->instances[i].pin_list[shift + j];
-				virq = irq_find_mapping(eint->domain, eint_num);
+				virq = irq_find_mapping(eint->domain, (unsigned long)eint_num);
 
 				/*
 				 * If we get an interrupt on pin that was only required
@@ -548,7 +548,7 @@ static void mtk_eint_irq_handler(struct irq_desc *desc)
 					 * Clear soft-irq in case we raised it last
 					 * time.
 					 */
-					mtk_eint_soft_clr(eint, eint_num);
+					mtk_eint_soft_clr(eint, (unsigned long)eint_num);
 
 					start_level =
 					eint->gpio_xlate->get_gpio_state(eint->pctl,
@@ -558,18 +558,18 @@ static void mtk_eint_irq_handler(struct irq_desc *desc)
 				generic_handle_irq(virq);
 
 				if (dual_edge) {
-					curr_level = mtk_eint_flip_edge(eint, eint_num);
+					curr_level = mtk_eint_flip_edge(eint, (unsigned long)eint_num);
 
 					/*
 					 * If level changed, we might lost one edge
 					 * interrupt, raised it through soft-irq.
 					 */
 					if (start_level != curr_level)
-						mtk_eint_soft_set(eint, eint_num);
+						mtk_eint_soft_set(eint, (unsigned long)eint_num);
 				}
 
 				if (eint->pins[eint_num].debounce)
-					mtk_eint_debounce_process(eint, eint_num);
+					mtk_eint_debounce_process(eint, (unsigned long)eint_num);
 
 			}
 		}
@@ -639,12 +639,12 @@ int mtk_eint_set_debounce(struct mtk_eint *eint, unsigned long eint_num,
 				  &instance, &index);
 
 	if (!reg) {
-		dev_err(eint->dev, "%s invalid eint_num %d\n",
-			__func__, eint_num);
+		dev_err(eint->dev, "%s invalid eint_num %lu\n",
+			__func__, (unsigned long)eint_num);
 		return 0;
 	}
 
-	virq = irq_find_mapping(eint->domain, eint_num);
+	virq = irq_find_mapping(eint->domain, (unsigned long)eint_num);
 	eint_offset = (index % 4) * 8;
 	d = irq_get_irq_data(virq);
 
@@ -702,8 +702,8 @@ unsigned int mtk_eint_get_debounce_en(struct mtk_eint *eint,
 				  &instance, &index);
 
 	if (!reg) {
-		dev_err(eint->dev, "%s invalid eint_num %d\n",
-			__func__, eint_num);
+		dev_err(eint->dev, "%s invalid eint_num %lu\n",
+			__func__, (unsigned long)eint_num);
 		return 0;
 	}
 
@@ -725,8 +725,8 @@ unsigned int mtk_eint_get_debounce_value(struct mtk_eint *eint,
 				  &instance, &index);
 
 	if (!reg) {
-		dev_err(eint->dev, "%s invalid eint_num %d\n",
-			__func__, eint_num);
+		dev_err(eint->dev, "%s invalid eint_num %lu\n",
+			__func__, (unsigned long)eint_num);
 		return 0;
 	}
 
@@ -769,12 +769,12 @@ int dump_eint_pin_status(unsigned int eint_num, char *buf, unsigned int buf_size
 		return -ENODEV;
 
 	enabled = global_eintc->pins[eint_num].enabled;
-	stat = mtk_eint_get_stat(global_eintc, eint_num);
-	raw_stat = mtk_eint_get_raw_stat(global_eintc, eint_num);
-	soft = mtk_eint_get_soft(global_eintc, eint_num);
-	mask = mtk_eint_get_mask(global_eintc, eint_num);
-	sens = mtk_eint_get_sens(global_eintc, eint_num);
-	pol = mtk_eint_get_pol(global_eintc, eint_num);
+	stat = mtk_eint_get_stat(global_eintc, (unsigned long)eint_num);
+	raw_stat = mtk_eint_get_raw_stat(global_eintc, (unsigned long)eint_num);
+	soft = mtk_eint_get_soft(global_eintc, (unsigned long)eint_num);
+	mask = mtk_eint_get_mask(global_eintc, (unsigned long)eint_num);
+	sens = mtk_eint_get_sens(global_eintc, (unsigned long)eint_num);
+	pol = mtk_eint_get_pol(global_eintc, (unsigned long)eint_num);
 
 	len += snprintf(buf + len, buf_size - len,
 			"%s=%u(%s)\n%s=%s_%s\n%s=%u\n%s=%u\n%s=%u\n%s=%u\n",
@@ -787,8 +787,8 @@ int dump_eint_pin_status(unsigned int eint_num, char *buf, unsigned int buf_size
 			"Mask", mask);
 
 	if (mtk_eint_can_en_debounce(global_eintc, eint_num)) {
-		deb_en	= mtk_eint_get_debounce_en(global_eintc, eint_num);
-		deb_val = mtk_eint_get_debounce_value(global_eintc, eint_num);
+		deb_en	= mtk_eint_get_debounce_en(global_eintc, (unsigned long)eint_num);
+		deb_val = mtk_eint_get_debounce_value(global_eintc, (unsigned long)eint_num);
 
 		len += snprintf(buf + len, buf_size - len,
 				"Support debounce, %s=%u, %s=%u\n",
@@ -822,7 +822,7 @@ static ssize_t eintc_status_show(struct device_driver *driver, char *buf)
 					"%d ", inst.pin_list[j]);
 
 		len += snprintf(buf + len, PAGE_SIZE - len,
-				"\n", i, inst.pin_list[j]);
+				"\n");
 	}
 
 	return strlen(buf);

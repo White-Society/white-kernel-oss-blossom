@@ -905,7 +905,7 @@ static int mt6370_transmit(struct tcpc_device *tcpc, enum tcpm_transmit_type typ
 	struct mt6370_tcpc_data *ddata = tcpc_get_dev_data(tcpc);
 	u8 temp[MT6370_TRANSMIT_MAX_SIZE];
 	int ret, data_cnt, packet_cnt;
-	long long t1 = 0, t2 = 0;
+	long long t1 __maybe_unused = 0, t2 __maybe_unused = 0;
 
 	MT6370_INFO("%s ++\n", __func__);
 	t1 = local_clock();

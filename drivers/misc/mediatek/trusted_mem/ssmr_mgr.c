@@ -34,12 +34,12 @@ static int tmem_ssmr_get(u64 *pa, u32 *size, u32 feat, void *dev_desc)
 	*pa = (u64)ssmr_pa;
 	*size = (u32)ssmr_size;
 	if (INVALID_ADDR(*pa) || INVALID_SIZE(*size)) {
-		pr_err("ssmr pa is invalid (0x%llx, 0x%x)\n", *pa, *size);
+		pr_err("ssmr pa is invalid (0x%llx, 0x%x)\n", (unsigned long long)*pa, *size);
 		return TMEM_INVALID_ADDR_OR_SIZE;
 	}
 
 	pr_debug("ssmr offline passed! feat:%d, pa: 0x%llx, sz: 0x%x\n", feat,
-		 *pa, *size);
+		 (unsigned long long)*pa, *size);
 	return TMEM_OK;
 }
 

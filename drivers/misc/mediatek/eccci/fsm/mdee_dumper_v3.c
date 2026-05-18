@@ -12,7 +12,7 @@
 #include <soc/mediatek/emi.h>
 #include "mdee_dumper_v3.h"
 #include "ccci_config.h"
-#include "ccci_common_config.h"
+#include "../ccci_common_config.h"
 #include "ccci_fsm_sys.h"
 #include "ccci_platform.h"
 #include "md_sys1_platform.h"

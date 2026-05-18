@@ -35,6 +35,7 @@
 #include <linux/of_platform.h>
 #include <linux/of_irq.h>
 #include <linux/of_address.h>
+#include <linux/pm_wakeup.h>
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/init.h>
@@ -6274,7 +6275,7 @@ static long ISP_ioctl(struct file *pFile, unsigned int Cmd, unsigned long Param)
 #if IS_ENABLED(CONFIG_PM_SLEEP)
 					__pm_stay_awake(isp_wake_lock);
 #else
-					wake_lock(&isp_wake_lock);
+					pm_stay_awake(isp_dev);
 #endif
 					g_WaitLockCt++;
 					pr_info("wakelock enable!! cnt(%d)\n",
@@ -8136,7 +8137,7 @@ EXIT:
 #if IS_ENABLED(CONFIG_PM_WAKELOCKS)
 		__pm_stay_awake(isp_wake_lock);
 #else
-		wake_lock(&isp_wake_lock);
+		pm_stay_awake(isp_dev);
 #endif
 		g_WaitLockCt++;
 		pr_info("wakelock enable!! cnt(%d)\n", g_WaitLockCt);

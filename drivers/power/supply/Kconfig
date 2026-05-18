@@ -1027,4 +1027,9 @@ config GAUGE_MT6983_ALPHA_SUPPORT
 	  Set Y or M to select this feature for specific platform-mt6983,
 	  and set N to disable.
 
+config CHARGER_BQ2560X
+    tristate "BQ2560X charger driver"
+    depends on I2C
+    help
+      Say Y to enable support for TI BQ2560X charger.
 endif # POWER_SUPPLY

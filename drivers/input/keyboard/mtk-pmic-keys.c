@@ -336,7 +336,7 @@ void kpd_pmic_pwrkey_hal(unsigned long pressed) //begin longcheer 259976 2022/9/
 {
 	input_report_key(kpd_input_dev, KPD_EVENT, pressed);
 	input_sync(kpd_input_dev);
-	pr_err("kpd using PMIC, pressed = %d\n",pressed);
+	pr_err("kpd using PMIC, pressed = %lu\n",pressed);
 } //end longcheer 259976 2022/9/26
 EXPORT_SYMBOL(kpd_pmic_pwrkey_hal);
 static int mtk_pmic_key_setup(struct mtk_pmic_keys *keys,

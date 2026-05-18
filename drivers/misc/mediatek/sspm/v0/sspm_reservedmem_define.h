@@ -5,7 +5,7 @@
 
 #ifndef _SSPM_RESERVEDMEM_DEFINE_H_
 #define _SSPM_RESERVEDMEM_DEFINE_H_
-#include <sspm_reservedmem.h>
+#include "sspm_reservedmem.h"
 
 #define _SSPM_INTERNAL_
 

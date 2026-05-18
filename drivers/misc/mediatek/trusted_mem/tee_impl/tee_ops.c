@@ -240,8 +240,8 @@ static int secmem_execute(u32 cmd, struct secmem_param *param)
 	param->size = msg->size;
 
 	pr_debug("shndl=0x%llx refcnt=%d align=0x%llx size=0x%llx\n",
-		 (u64)param->sec_handle, param->refcount, (u64)param->alignment,
-		 (u64)param->size);
+		 (unsigned long long)param->sec_handle, param->refcount, (unsigned long long)param->alignment,
+		 (unsigned long long)param->size);
 
 	TEE_SESSION_UNLOCK();
 	return TMEM_OK;
@@ -335,8 +335,8 @@ int tee_mem_reg_add(u64 pa, u32 size, void *tee_data, void *dev_desc)
 		}
 	}
 
-	pr_info("[%d] TEE append reg mem PASS: PA=0x%lx, size=0x%lx\n",
-				tee_dev_desc->kern_tmem_type, pa, size);
+	pr_info("[%d] TEE append reg mem PASS: PA=0x%llx, size=0x%x\n",
+				tee_dev_desc->kern_tmem_type, (unsigned long long)pa, size);
 
 	return TMEM_OK;
 }

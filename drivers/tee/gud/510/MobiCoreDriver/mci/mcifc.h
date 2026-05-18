@@ -15,7 +15,7 @@
 #ifndef MCIFC_H
 #define MCIFC_H
 
-#include "platform.h"
+#include "../platform.h"
 
 /** @name MobiCore FastCall Definition
  * Defines for the two different FastCall's.

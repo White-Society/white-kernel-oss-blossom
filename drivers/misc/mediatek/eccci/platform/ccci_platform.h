@@ -8,7 +8,7 @@
 
 #include <linux/io.h>
 #include "ccci_config.h"
-#include "ccci_common_config.h"
+#include "../ccci_common_config.h"
 //#include "modem_sys.h"
 
 #define ccci_write32(b, a, v)  \

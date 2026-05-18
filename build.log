@@ -1,0 +1,310 @@
+make[1]: вход в каталог «/home/sorvigolova/VSCodeProjects/white-kernel-oss-blossom/out»
+  SYNC    include/config/auto.conf.cmd
+  GEN     Makefile
+  HOSTCC  scripts/basic/fixdep
+  HOSTCC  scripts/kconfig/conf.o
+  HOSTCC  scripts/kconfig/confdata.o
+  HOSTCC  scripts/kconfig/expr.o
+  HOSTCC  scripts/kconfig/lexer.lex.o
+  HOSTCC  scripts/kconfig/parser.tab.o
+  HOSTCC  scripts/kconfig/preprocess.o
+  HOSTCC  scripts/kconfig/symbol.o
+  HOSTCC  scripts/kconfig/util.o
+  HOSTLD  scripts/kconfig/conf
+drivers/misc/mediatek/sensors-1.0/sensorHub/Kconfig:2:warning: ignoring type redefinition of 'CUSTOM_KERNEL_SENSORHUB' from 'tristate' to 'bool'
+drivers/misc/mediatek/sensors-1.0/sensorHub/Kconfig:14:warning: no new line at end of file
+drivers/misc/mediatek/sensors-1.0/sensorHub/nanohub/Kconfig:1:warning: ignoring type redefinition of 'NANOHUB' from 'bool' to 'tristate'
+drivers/misc/mediatek/sensors-1.0/Kconfig:20:warning: no new line at end of file
+drivers/input/touchscreen/icnl9916_spi/Kconfig:1:warning: ignoring unsupported character ''
+drivers/input/touchscreen/icnl9916_spi/Kconfig:2:warning: ignoring unsupported character ''
+drivers/input/touchscreen/icnl9916_spi/Kconfig:3:warning: ignoring unsupported character ''
+drivers/input/touchscreen/icnl9916_spi/Kconfig:4:warning: ignoring unsupported character ''
+drivers/input/touchscreen/lct_tp/Kconfig:1:warning: ignoring unsupported character ''
+drivers/input/touchscreen/lct_tp/Kconfig:2:warning: ignoring unsupported character ''
+drivers/input/touchscreen/lct_tp/Kconfig:3:warning: ignoring unsupported character ''
+drivers/input/touchscreen/lct_tp/Kconfig:4:warning: ignoring unsupported character ''
+drivers/input/touchscreen/GT9966/Kconfig:4:warning: ignoring unsupported character ''
+drivers/input/touchscreen/GT9966/Kconfig:5:warning: ignoring unsupported character ''
+drivers/input/touchscreen/GT9966/Kconfig:6:warning: ignoring unsupported character ''
+drivers/gpu/drm/mediatek/Kconfig:32:warning: no new line at end of file
+*
+* Restart config...
+*
+*
+* ARMv8.3 architectural features
+*
+Enable support for pointer authentication (ARM64_PTR_AUTH) [Y/n/?] (NEW) n
+*
+* ARMv8.4 architectural features
+*
+Enable support for the Activity Monitors Unit CPU extension (ARM64_AMU_EXTN) [Y/n/?] y
+Enable support for tlbi range feature (ARM64_TLB_RANGE) [Y/n/?] (NEW) n
+*
+* ARMv8.5 architectural features
+*
+Branch Target Identification support (ARM64_BTI) [Y/n/?] y
+Enable support for E0PD (ARM64_E0PD) [Y/n/?] y
+Enable support for random number generation (ARCH_RANDOM) [Y/n/?] y
+Memory Tagging Extension support (ARM64_MTE) [Y/n/?] (NEW) n
+*
+* General architecture-dependent options
+*
+Optimize very unlikely/likely branches (JUMP_LABEL) [N/y/?] n
+Enable seccomp to safely execute untrusted bytecode (SECCOMP) [Y/n/?] y
+Stack Protector buffer overflow detection (STACKPROTECTOR) [Y/n/?] y
+  Strong Stack Protector (STACKPROTECTOR_STRONG) [Y/n/?] y
+Clang Shadow Call Stack (SHADOW_CALL_STACK) [N/y/?] (NEW) n
+Link Time Optimization (LTO)
+> 1. None (LTO_NONE)
+choice[1]: 1
+Provide system calls for 32-bit time_t (COMPAT_32BIT_TIME) [N/y/?] n
+Use a virtually-mapped stack (VMAP_STACK) [Y/n/?] y
+Use RELR relocation packing (RELR) [Y/n/?] y
+  GEN     Makefile
+  CALL    ../scripts/atomic/check-atomics.sh
+  CALL    ../scripts/checksyscalls.sh
+  CHK     include/generated/compile.h
+  CC      drivers/misc/mediatek/typec/tcpc/tcpc_mt6370.o
+FDVT LBJ: Drv use 4.0 folder
+  CC      drivers/misc/mediatek/cameraisp/fdvt/4.0/camera_fdvt.o
+..
+  AR      drivers/misc/mediatek/cameraisp/fdvt/4.0/built-in.a
+..
+  CC      drivers/of/base.o
+  CC      drivers/misc/mediatek/typec/tcpc/tcpci_core.o
+  CC      drivers/power/supply/bq2560x_charger.o
+  AR      drivers/misc/mediatek/cameraisp/fdvt/built-in.a
+  AR      drivers/misc/mediatek/cameraisp/built-in.a
+  AR      drivers/platform/built-in.a
+  CC      drivers/power/supply/mtk_battery_coulomb_service.o
+  CC      drivers/of/device.o
+  CC      drivers/misc/mediatek/typec/tcpc/tcpci_typec.o
+  CC      drivers/power/supply/mtk_battery.o
+  CC      drivers/misc/mediatek/lens/vcm/v4l2/media/mtk-composite.o
+  CC      drivers/of/platform.o
+../drivers/power/supply/bq2560x_charger.c:338:12: error: unused function 'bq2560x_enable_term' [-Werror,-Wunused-function]
+static int bq2560x_enable_term(struct bq2560x *bq, bool enable)
+           ^
+../drivers/power/supply/bq2560x_charger.c:424:12: error: unused function 'bq2560x_enable_batfet' [-Werror,-Wunused-function]
+static int bq2560x_enable_batfet(struct bq2560x *bq)
+           ^
+../drivers/power/supply/bq2560x_charger.c:433:12: error: unused function 'bq2560x_disable_batfet' [-Werror,-Wunused-function]
+static int bq2560x_disable_batfet(struct bq2560x *bq)
+           ^
+../drivers/power/supply/bq2560x_charger.c:442:12: error: unused function 'bq2560x_set_batfet_delay' [-Werror,-Wunused-function]
+static int bq2560x_set_batfet_delay(struct bq2560x *bq, uint8_t delay)
+           ^
+4 errors generated.
+make[4]: *** [../scripts/Makefile.build:273: drivers/power/supply/bq2560x_charger.o] Ошибка 1
+make[4]: *** Ожидание завершения заданий…
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/main_lens.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/fp5510e2af/FP5510E2AF.o
+  CC      drivers/misc/mediatek/typec/tcpc/tcpci_timer.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/bu6424af/BU6424AF.o
+  CC      drivers/misc/mediatek/lens/vcm/v4l2/dw9718/dw9718.o
+../drivers/power/supply/mtk_battery.c:3870:4: error: ignoring return value of function declared with 'warn_unused_result' attribute [-Werror,-Wunused-result]
+                        kstrtoint(temp, 10, &gm->ptim_lk_v);
+                        ^~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~
+../drivers/power/supply/mtk_battery.c:3882:4: error: ignoring return value of function declared with 'warn_unused_result' attribute [-Werror,-Wunused-result]
+                        kstrtoint(temp, 10, &gm->ptim_lk_i);
+                        ^~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~
+../drivers/power/supply/mtk_battery.c:3893:4: error: ignoring return value of function declared with 'warn_unused_result' attribute [-Werror,-Wunused-result]
+                        kstrtoint(temp, 10, &gm->pl_shutdown_time);
+                        ^~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3 errors generated.
+make[4]: *** [../scripts/Makefile.build:273: drivers/power/supply/mtk_battery.o] Ошибка 1
+make[3]: *** [../scripts/Makefile.build:516: drivers/power/supply] Ошибка 2
+make[2]: *** [../scripts/Makefile.build:516: drivers/power] Ошибка 2
+make[2]: *** Ожидание завершения заданий…
+  CC      drivers/misc/mediatek/flashlight/flashlight-core.o
+  AR      drivers/misc/mediatek/lens/vcm/v4l2/media/built-in.a
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main2/main2_lens.o
+  CC      drivers/misc/mediatek/typec/tcpc/tcpm.o
+  CC      drivers/of/property.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main2/common/ak7371af/AK7371AF.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/bu6429af/BU6429AF.o
+  AR      drivers/misc/mediatek/lens/vcm/v4l2/dw9718/built-in.a
+  CC      drivers/misc/mediatek/lens/vcm/v4l2/lc898229/lc898229.o
+  CC      drivers/misc/mediatek/flashlight/flashlight-device.o
+  CC      drivers/misc/mediatek/lens/vcm/v4l2/gt9764/gt9764.o
+  CC      drivers/of/kobj.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main2/common/ak7374af/AK7374AF.o
+  CC      drivers/misc/mediatek/typec/tcpc/tcpci.o
+  CC      drivers/misc/mediatek/flashlight/flashlights-ocp8132.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/bu64748af/bu64748_function.o
+  CC      drivers/misc/mediatek/lens/vcm/v4l2/gt9772a/gt9772a.o
+  CC      drivers/of/fdt.o
+  AR      drivers/misc/mediatek/lens/vcm/v4l2/lc898229/built-in.a
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main2/common/bu64748af/bu64748_function.o
+  CC      drivers/misc/mediatek/lens/ois/bu63169/bu63169.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/bu64748af/bu64748af.o
+  CC      drivers/misc/mediatek/typec/tcpc/tcpci_alert.o
+  AR      drivers/misc/mediatek/lens/vcm/v4l2/gt9764/built-in.a
+  CC      drivers/misc/mediatek/flashlight/mtk-composite.o
+  CC      drivers/misc/mediatek/lens/vcm/v4l2/gt9772b/gt9772b.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main2/common/bu64748af/bu64748af.o
+  AR      drivers/misc/mediatek/lens/vcm/v4l2/gt9772a/built-in.a
+  CC      drivers/misc/mediatek/lens/vcm/v4l2/ak7377a/ak7377a.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/dw9714af/DW9714AF.o
+  CC      drivers/of/fdt_address.o
+  CC      drivers/misc/mediatek/typec/tcpc/rt-regmap.o
+  AR      drivers/misc/mediatek/flashlight/built-in.a
+  CC      drivers/misc/mediatek/lens/vcm/v4l2/dw9800w/dw9800w.o
+  AR      drivers/misc/mediatek/lens/ois/bu63169/built-in.a
+  AR      drivers/misc/mediatek/lens/ois/built-in.a
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main3/main3_lens.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main2/common/lc898212xdaf_f/LC89821x_STMV.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/dw9800waf/DW9800WAF.o
+  AR      drivers/misc/mediatek/lens/vcm/v4l2/gt9772b/built-in.a
+  CC      drivers/misc/mediatek/typec/tcpc/tcpci_event.o
+  CC      drivers/of/address.o
+  AR      drivers/misc/mediatek/lens/vcm/v4l2/ak7377a/built-in.a
+  CC      drivers/misc/mediatek/lens/vcm/v4l2/ak7375c/ak7375c.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main2/common/lc898212xdaf_f/LC898212XDAF_F.o
+  AR      drivers/misc/mediatek/lens/vcm/v4l2/dw9800w/built-in.a
+  AR      drivers/misc/mediatek/flashlight/v4l2/built-in.a
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/sub/sub_lens.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/dw9814af/DW9814AF.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/sub2/sub2_lens.o
+  CC      drivers/misc/mediatek/typec/tcpc/pd_core.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main3/common/bu24253af/BU24253AF.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/dw9718af/DW9718AF.o
+  AR      drivers/misc/mediatek/lens/vcm/v4l2/ak7375c/built-in.a
+  CC      drivers/misc/mediatek/lens/vcm/v4l2/bu64253gwz/bu64253gwz.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main2/common/lc898217af/LC898217AF.o
+  CC      drivers/of/irq.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/sub/common/bu6424af/BU6424AF.o
+  CC      drivers/misc/mediatek/typec/tcpc/pd_policy_engine.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main3/common/gt9772af/GT9772AF.o
+  AR      drivers/misc/mediatek/lens/vcm/proprietary/sub2/built-in.a
+  CC      drivers/misc/mediatek/dcm_v1/mtk_dcm.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/dw9718saf/DW9718SAF.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main2/common/lc898217afa/LC898217AFA.o
+  CC      drivers/misc/mediatek/typec/tcpc/pd_process_evt.o
+  AR      drivers/misc/mediatek/lens/vcm/v4l2/bu64253gwz/built-in.a
+  CC      drivers/misc/mediatek/lens/vcm/v4l2/dw9800v/dw9800v.o
+  CC      drivers/of/of_reserved_mem.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/sub/common/bu6429af/BU6429AF.o
+  AR      drivers/misc/mediatek/lens/vcm/proprietary/main3/built-in.a
+  CC      drivers/misc/mediatek/dcm_v1/dcm_v1_autogen.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/dw9718taf/DW9718TAF.o
+common_drv : sc820cs_truly_main_i_mipi_raw s5k4h7yx03_aac_main_ii_mipi_raw s5k4h7_ofilm_main_iii_mipi_raw sc520cs_truly_front_i_mipi_raw gc05a2_qtech_front_ii_mipi_raw s5k5e9_ofilm_front_iii_mipi_raw
+  CC      drivers/misc/mediatek/imgsensor/src/isp4_c/../common/v1/imgsensor.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main2/common/lc898217afb/LC898217AFB.o
+  CC      drivers/misc/mediatek/typec/tcpc/pd_dpm_core.o
+  CC      drivers/misc/mediatek/dcm_v1/dcm_v1_internal.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/sub/common/dw9714af/DW9714AF.o
+  AR      drivers/of/built-in.a
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/dw9719taf/DW9719TAF.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/dw9763af/DW9763AF.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main2/common/lc898217afc/LC898217AFC.o
+  AR      drivers/misc/mediatek/lens/vcm/v4l2/dw9800v/built-in.a
+  CC      drivers/misc/mediatek/lens/vcm/v4l2/gt9768/gt9768.o
+  AR      drivers/misc/mediatek/dcm_v1/built-in.a
+  CC      drivers/misc/mediatek/typec/tcpc/pd_dpm_uvdm.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/dw9839af/DW9839AF.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/sub/common/dw9814af/DW9814AF.o
+  CC      drivers/misc/mediatek/typec/tcpc/pd_dpm_alt_mode_dp.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main2/common/dw9718taf/DW9718TAF.o
+  CC      drivers/misc/mediatek/imgsensor/src/isp4_c/../common/v1/imgsensor_hw.o
+  CC      drivers/misc/mediatek/typec/tcpc/pd_dpm_pdo_select.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/gt9764af/GT9764AF.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main2/common/gt9772af/GT9772AF.o
+  AR      drivers/misc/mediatek/lens/vcm/v4l2/gt9768/built-in.a
+../drivers/misc/mediatek/typec/tcpc/pd_dpm_alt_mode_dp.c:281:6: error: variable 'local_index' set but not used [-Werror,-Wunused-but-set-variable]
+        int local_index = -1, remote_index = -1;
+            ^
+1 error generated.
+  AR      drivers/misc/mediatek/lens/vcm/v4l2/built-in.a
+make[6]: *** [../scripts/Makefile.build:273: drivers/misc/mediatek/typec/tcpc/pd_dpm_alt_mode_dp.o] Ошибка 1
+make[6]: *** Ожидание завершения заданий…
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/sub/common/dw9718af/DW9718AF.o
+  CC      drivers/misc/mediatek/iommu/iommu_debug.o
+  CC      drivers/misc/mediatek/imgsensor/src/isp4_c/../common/v1/imgsensor_i2c.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/sub/common/lc898214af/LC898214AF.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/gt9768af/GT9768AF.o
+make[5]: *** [../scripts/Makefile.build:516: drivers/misc/mediatek/typec/tcpc] Ошибка 2
+make[4]: *** [../scripts/Makefile.build:516: drivers/misc/mediatek/typec] Ошибка 2
+make[4]: *** Ожидание завершения заданий…
+  CC      drivers/misc/mediatek/iommu/iommu_secure.o
+  CC      drivers/misc/mediatek/imgsensor/src/isp4_c/../common/v1/imgsensor_legacy.o
+  AR      drivers/misc/mediatek/lens/vcm/proprietary/main2/built-in.a
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/sub/common/wv511aaf/WV511AAF.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/sub/common/ak7371af/AK7371AF.o
+  CC      drivers/misc/mediatek/iommu/iommu_test.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/lc898212af/LC898212AF.o
+  CC      drivers/misc/mediatek/imgsensor/src/isp4_c/../common/v1/imgsensor_proc.o
+  CC      drivers/misc/mediatek/iommu/iommu_pseudo.o
+../drivers/misc/mediatek/iommu/iommu_debug.c:5051:8: error: implicit declaration of function 'register_trace_android_vh_iommu_iovad_alloc_iova' [-Werror,-Wimplicit-function-declaration]
+        ret = register_trace_android_vh_iommu_iovad_alloc_iova(alloc_iova_hook,
+              ^
+../drivers/misc/mediatek/iommu/iommu_debug.c:5051:8: note: did you mean 'trace_android_vh_iommu_iovad_alloc_iova'?
+../include/trace/hooks/iommu.h:34:1: note: 'trace_android_vh_iommu_iovad_alloc_iova' declared here
+DECLARE_HOOK(android_vh_iommu_iovad_alloc_iova,
+^
+../include/trace/hooks/vendor_hooks.h:113:22: note: expanded from macro 'DECLARE_HOOK'
+#define DECLARE_HOOK DECLARE_EVENT_NOP
+                     ^
+../include/linux/tracepoint.h:574:21: note: expanded from macro 'DECLARE_EVENT_NOP'
+        static inline void trace_##name(proto)                          \
+                           ^
+<scratch space>:32:1: note: expanded from here
+trace_android_vh_iommu_iovad_alloc_iova
+^
+../drivers/misc/mediatek/iommu/iommu_debug.c:5054:8: error: implicit declaration of function 'register_trace_android_vh_iommu_iovad_free_iova' [-Werror,-Wimplicit-function-declaration]
+        ret = register_trace_android_vh_iommu_iovad_free_iova(free_iova_hook,
+              ^
+2 errors generated.
+make[5]: *** [../scripts/Makefile.build:273: drivers/misc/mediatek/iommu/iommu_debug.o] Ошибка 1
+make[5]: *** Ожидание завершения заданий…
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/lc898212xdaf/LC898212XDAF.o
+../drivers/misc/mediatek/iommu/iommu_secure.c:230:1: error: type specifier missing, defaults to 'int' [-Werror,-Wimplicit-int]
+mtk_iommu_secure_bk_tf_dump(uint32_t type, uint32_t id, uint32_t bank,
+^
+1 error generated.
+make[5]: *** [../scripts/Makefile.build:273: drivers/misc/mediatek/iommu/iommu_secure.o] Ошибка 1
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/lc898212xdaf/AfInter.o
+  CC      drivers/misc/mediatek/imgsensor/src/isp4_c/../common/v1/imgsensor_sensor_list.o
+  AR      drivers/misc/mediatek/lens/vcm/proprietary/sub/built-in.a
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/lc898212xdaf/AfInit.o
+  CC      drivers/misc/mediatek/imgsensor/src/isp4_c/imgsensor_clk.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/lc898212xdaf/AfSTMV.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/lc898214af/LC898214AF.o
+  CC      drivers/misc/mediatek/imgsensor/src/isp4_c/../common/v1/sc820cs_truly_main_i_mipi_raw/sc820cs_truly_main_i_mipi_raw.o
+  CC      drivers/misc/mediatek/imgsensor/src/isp4_c/../common/v1/s5k4h7yx03_aac_main_ii_mipi_raw/s5k4h7yx03_aac_main_ii_mipi_raw.o
+make[4]: *** [../scripts/Makefile.build:516: drivers/misc/mediatek/iommu] Ошибка 2
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/lc898217af/LC898217AF.o
+  CC      drivers/misc/mediatek/imgsensor/src/isp4_c/../common/v1/s5k4h7_ofilm_main_iii_mipi_raw/s5k4h7_ofilm_main_iii_mipi_raw.o
+  CC      drivers/misc/mediatek/imgsensor/src/isp4_c/../common/v1/sc520cs_truly_front_i_mipi_raw/sc520cs_truly_front_i_mipi_raw.o
+  CC      drivers/misc/mediatek/imgsensor/src/isp4_c/../common/v1/gc05a2_qtech_front_ii_mipi_raw/gc05a2_qtech_front_ii_mipi_raw.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/lc898217afa/LC898217AFA.o
+  CC      drivers/misc/mediatek/imgsensor/src/isp4_c/../common/v1/s5k5e9_ofilm_front_iii_mipi_raw/s5k5e9_ofilm_front_iii_mipi_raw.o
+  CC      drivers/misc/mediatek/imgsensor/src/isp4_c/camera_hw/regulator/regulator.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/lc898217afb/LC898217AFB.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/lc898217afc/LC898217AFC.o
+  CC      drivers/misc/mediatek/imgsensor/src/isp4_c/camera_hw/gpio/gpio.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/lc898229af/LC898229AF.o
+  CC      drivers/misc/mediatek/imgsensor/src/isp4_c/camera_hw/mclk/mclk.o
+  CC      drivers/misc/mediatek/imgsensor/src/isp4_c/camera_hw/imgsensor_cfg_table.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/lc898122af/LC898122AF.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/lc898122af/OisCmd.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/lc898122af/OisIni.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/wv511aaf/WV511AAF.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/ak7371af/AK7371AF.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/bu63169af/BU63169AF.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/bu63169af/OIS_func.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/bu63169af/OIS_main.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/bu63169af/OIS_user.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/bu64253gwzaf/BU64253GWZAF.o
+  CC      drivers/misc/mediatek/lens/vcm/proprietary/main/common/gt9772af/GT9772AF.o
+  AR      drivers/misc/mediatek/imgsensor/src/isp4_c/built-in.a
+  AR      drivers/misc/mediatek/imgsensor/src/built-in.a
+  AR      drivers/misc/mediatek/lens/vcm/proprietary/main/built-in.a
+  AR      drivers/misc/mediatek/lens/vcm/proprietary/built-in.a
+  AR      drivers/misc/mediatek/lens/vcm/built-in.a
+  AR      drivers/misc/mediatek/lens/built-in.a
+make[3]: *** [../scripts/Makefile.build:516: drivers/misc/mediatek] Ошибка 2
+make[2]: *** [../scripts/Makefile.build:516: drivers/misc] Ошибка 2
+make[1]: *** [/home/sorvigolova/VSCodeProjects/white-kernel-oss-blossom/Makefile:1915: drivers] Ошибка 2
+make[1]: выход из каталога «/home/sorvigolova/VSCodeProjects/white-kernel-oss-blossom/out»
+make: *** [Makefile:192: __sub-make] Ошибка 2

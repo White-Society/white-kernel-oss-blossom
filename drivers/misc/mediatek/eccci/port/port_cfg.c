@@ -4,7 +4,7 @@
  */
 
 #include "ccci_config.h"
-#include "ccci_common_config.h"
+#include "../ccci_common_config.h"
 #include "ccci_hif.h"
 #include "port_cfg.h"
 

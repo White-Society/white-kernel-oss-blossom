@@ -33,6 +33,7 @@
 #include <linux/bitfield.h>
 #include <linux/devfreq.h>
 #include <linux/keyslot-manager.h>
+#include <linux/devfreq.h>
 #include "unipro.h"
 
 #include <asm/irq.h>

@@ -94,7 +94,7 @@ static int hyp_pmm_enable_cma(void)
 
 	ret = (long)smc_res.a0;
 	if (ret <= 0) {
-		pr_err("%s: enable cma failed %llx\n", __func__, smc_res.a0);
+		pr_err("%s: enable cma failed %lx\n", __func__, (unsigned long)smc_res.a0);
 		return -EFAULT;
 	}
 
@@ -111,7 +111,7 @@ static int hyp_pmm_disable_cma(void)
 	arm_smccc_smc(HYP_PMM_DISABLE_CMA, cookie, 0, 0, 0, 0, 0, 0, &smc_res);
 
 	if (smc_res.a0 != 0) {
-		pr_err("%s: enable cma failed %llx\n", __func__, smc_res.a0);
+		pr_err("%s: enable cma failed %lx\n", __func__, (unsigned long)smc_res.a0);
 		return -EFAULT;
 	}
 
@@ -141,7 +141,7 @@ static void ssmr_zone_offline(void)
 retry:
 	/* get start time */
 	start = sched_clock();
-	pr_info("%s: cma_alloc size=%llx\n", __func__, ssheap_phys_size);
+	pr_info("%s: cma_alloc size=0x%llx\n", __func__, (unsigned long long)ssheap_phys_size);
 
 	cma_page = cma_alloc(ssheap_dev->cma_area, ssheap_phys_size >> PAGE_SHIFT,
 			 get_order(SZ_2M), GFP_KERNEL);
@@ -150,7 +150,7 @@ retry:
 	end = sched_clock();
 	duration = end - start;
 	do_div(duration, 1000000);
-	pr_info("%s: duration: %d ns (%d ms)\n", __func__, end - start, duration);
+	pr_info("%s: duration: %llu ns (%llu ms)\n", __func__, (unsigned long long)(end - start), (unsigned long long)duration);
 
 	if (cma_page == NULL) {
 		pr_warn("%s: cma_alloc failed retry:%d\n", __func__, retry);
@@ -175,8 +175,11 @@ retry:
 		return;
 	}
 
-	pr_info("%s: cma_alloc success, cma_page=%llx pa=%llx, size=%llx\n", __func__,
-		(u64)cma_page, page_to_phys(cma_page), ssheap_phys_size);
+	{
+		phys_addr_t paddr = page_to_phys(cma_page);
+		pr_info("%s: cma_alloc success, cma_page=%p, pa=%pa, size=0x%llx\n", __func__,
+			cma_page, &paddr, (unsigned long long)ssheap_phys_size);
+	}
 	size = (uint64_t)ssheap_phys_size;
 	kaddr = page_address(cma_page);
 
@@ -207,7 +210,7 @@ static void ssmr_zone_online(void)
 		return;
 	}
 
-	pr_info("%s: free %llx cma_page=%llx\n", __func__, ssheap_phys_size, (u64)cma_page);
+	pr_info("%s: free 0x%llx cma_page=%p\n", __func__, (unsigned long long)ssheap_phys_size, cma_page);
 	if (hyp_pmm_disable_cma() == 0) {
 		cma_release(ssheap_dev->cma_area, cma_page, ssheap_phys_size >> PAGE_SHIFT);
 		cma_page = NULL;
@@ -398,7 +401,7 @@ struct ssheap_buf_info *ssheap_alloc_non_contig(u32 req_size, u32 prefer_align,
 	}
 
 	if (req_size == 0) {
-		pr_err("Invalid size, size=0x%lx\n", req_size);
+		pr_err("Invalid size, size=0x%x\n", req_size);
 		return NULL;
 	}
 
@@ -473,7 +476,7 @@ retry:
 		block->block_size = block_size;
 		list_add_tail(&block->entry, &info->block_list);
 
-		pr_debug("dma_addr=%lx size=%lx\n", block->dma_addr,
+		pr_debug("dma_addr=0x%llx size=0x%lx\n", (unsigned long long)block->dma_addr,
 			 block->block_size);
 
 		allocated_size += block_size;
@@ -566,7 +569,7 @@ unsigned long mtee_assign_buffer(struct ssheap_buf_info *info, uint8_t mem_type)
 	pmm_attr = PGLIST_SET_ATTR(paddr, mem_type);
 	arm_smccc_smc(HYP_PMM_ASSIGN_BUFFER, lower_32_bits(pmm_attr),
 		      upper_32_bits(pmm_attr), count, 0, 0, 0, 0, &smc_res);
-	pr_debug("pmm_msg_page paddr=%pa smc_res.a0=%x\n", &paddr, smc_res.a0);
+	pr_debug("pmm_msg_page paddr=%pa smc_res.a0=0x%lx\n", &paddr, (unsigned long)smc_res.a0);
 
 	return smc_res.a0;
 }
@@ -588,7 +591,7 @@ unsigned long mtee_unassign_buffer(struct ssheap_buf_info *info,
 	pr_debug("pmm_msg_page paddr=%pa\n", &paddr);
 	arm_smccc_smc(HYP_PMM_UNASSIGN_BUFFER, lower_32_bits(pmm_attr),
 		      upper_32_bits(pmm_attr), count, 0, 0, 0, 0, &smc_res);
-	pr_debug("smc_res.a0=%x\n", smc_res.a0);
+	pr_debug("smc_res.a0=0x%lx\n", (unsigned long)smc_res.a0);
 	return smc_res.a0;
 }
 
@@ -600,8 +603,8 @@ void ssheap_dump_mem_info(void)
 		&ssheap_phys_size);
 
 	total_allocated_size = atomic64_read(&total_alloced_size);
-	pr_info("%s: total_alloced_size: 0x%x free: 0x%x\n", __func__,
-		total_allocated_size, ssheap_phys_size - total_allocated_size);
+	pr_info("%s: total_alloced_size: 0x%llx free: 0x%llx\n", __func__,
+		(unsigned long long)total_allocated_size, (unsigned long long)(ssheap_phys_size - total_allocated_size));
 }
 
 long long ssheap_get_used_size(void)
